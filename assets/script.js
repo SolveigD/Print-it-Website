@@ -17,12 +17,50 @@ const slides = [
 	}
 ]
 
+const images = slides.map(slide => slide.image);
+const tagLine = slides.map(slide => slide.tagLine)
+
+let baliseImage = document.querySelector(".banner-img")
+let elementsDot = document.querySelectorAll(".dot")
+let tableauDot = Array.from(elementsDot)
+let paraSlide = document.querySelector("#banner p")
+
+console.log(paraSlide)
+let index = 0
+
+
+console.log(tableauDot)
+
 let arrowLeft = document.querySelector(".arrow_left")
 arrowLeft.addEventListener("click", ()=>{
 	console.log("click sur fleche gauche")
+	index = (index - 1) % slides.length
+	baliseImage.src = "./assets/images/slideshow/" + images[index]
+	paraSlide.innerHTML = tagLine[index]
+	
+	tableauDot[index - 1].classList.add("dot_selected")
+	tableauDot[index].classList.remove("dot_selected")
+	
 })
 
+tableauDot[index].classList.add("dot_selected")
+
 let arrowRight = document.querySelector(".arrow_right")
+
 arrowRight.addEventListener("click", () =>{
 	console.log("click sur fleche droite")
+	console.log(slides.length)
+	index = (index + 1) % slides.length
+	baliseImage.src = "./assets/images/slideshow/" + images[index]
+	paraSlide.innerHTML = tagLine[index]
+	
+	tableauDot[index].classList.add("dot_selected")
+	tableauDot[index -1].classList.remove("dot_selected")
+	
+	
+	
+
+
 })
+
+
