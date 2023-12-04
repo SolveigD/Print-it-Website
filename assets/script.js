@@ -25,41 +25,51 @@ let elementsDot = document.querySelectorAll(".dot")
 let tableauDot = Array.from(elementsDot)
 let paraSlide = document.querySelector("#banner p")
 
-console.log(paraSlide)
 let index = 0
+tableauDot[0].classList.add("dot_selected")
+baliseImage.src = "./assets/images/slideshow/" + images[0]
+let dotInitial = tableauDot[0].classList.add("dot_selected")
+let dotNonInitial = tableauDot[1,2,3].classList.remove("dot_selected")
 
-
-console.log(tableauDot)
 
 let arrowLeft = document.querySelector(".arrow_left")
 arrowLeft.addEventListener("click", ()=>{
 	console.log("click sur fleche gauche")
-	index = (index - 1) % slides.length
-	baliseImage.src = "./assets/images/slideshow/" + images[index]
-	paraSlide.innerHTML = tagLine[index]
+
+		index --
+		baliseImage.src = "./assets/images/slideshow/" + images[index]
+		paraSlide.innerHTML = tagLine[index]
+		tableauDot[index].classList.add("dot_selected")
+		tableauDot[index+1].classList.remove("dot_selected")
 	
-	tableauDot[index - 1].classList.add("dot_selected")
-	tableauDot[index].classList.remove("dot_selected")
-	
+	if (index === images[0] -1){
+		baliseImage.src = "./assets/images/slideshow/" + images[3]
+	}
+
 })
 
-tableauDot[index].classList.add("dot_selected")
 
 let arrowRight = document.querySelector(".arrow_right")
 
 arrowRight.addEventListener("click", () =>{
 	console.log("click sur fleche droite")
-	console.log(slides.length)
-	index = (index + 1) % slides.length
-	baliseImage.src = "./assets/images/slideshow/" + images[index]
-	paraSlide.innerHTML = tagLine[index]
-	
-	tableauDot[index].classList.add("dot_selected")
-	tableauDot[index -1].classList.remove("dot_selected")
-	
-	
+
+		index++
+		baliseImage.src = "./assets/images/slideshow/" + images[index]
+		paraSlide.innerHTML = tagLine[index]
+		tableauDot[index].classList.add("dot_selected")
+		tableauDot[index -1].classList.remove("dot_selected")
+
 	
 
+	if (index > images.length){
+		
+		baliseImage.src = "./assets/images/slideshow/" + images[0]
+		tableauDot[index].classList.add("dot_selected")
+		tableauDot[images.length-1].classList.remove("dot_selected")
+		
+	}
+		
 
 })
 
