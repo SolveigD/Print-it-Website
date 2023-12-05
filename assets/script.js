@@ -17,8 +17,6 @@ const slides = [
 	}
 ]
 
-const images = slides.map(slide => slide.image);
-const tagLine = slides.map(slide => slide.tagLine)
 
 let baliseImage = document.querySelector(".banner-img")
 let elementsDot = document.querySelectorAll(".dot")
@@ -27,29 +25,24 @@ let paraSlide = document.querySelector("#banner p")
 
 let index = 0
 tableauDot[0].classList.add("dot_selected")
-baliseImage.src = "./assets/images/slideshow/" + images[0]
+baliseImage.src = "./assets/images/slideshow/" + slides[0].image
 
 
 
 let arrowLeft = document.querySelector(".arrow_left")
 arrowLeft.addEventListener("click", ()=>{
 	console.log("click sur fleche gauche")
-
 	index --
-
 	if (index < 0) {
-		index = images.length - 1;
+		index = 3;
 		tableauDot[0].classList.remove("dot_selected")
 	} else {
 		tableauDot[index+1].classList.remove("dot_selected")
 	}
 
-	console.log(index);
-
-	baliseImage.src = "./assets/images/slideshow/" + images[index]
-	paraSlide.innerHTML = tagLine[index]
-	tableauDot[index].classList.add("dot_selected")
-	
+	baliseImage.src = "./assets/images/slideshow/" + slides[index].image
+	paraSlide.innerHTML = slides[index].tagLine
+	tableauDot[index].classList.add("dot_selected")	
 
 })
 
@@ -58,22 +51,18 @@ let arrowRight = document.querySelector(".arrow_right")
 
 arrowRight.addEventListener("click", () =>{
 	console.log("click sur fleche droite")
-
 	index ++
-
-	if (index === images.length) {
+	if (index === 4) {
 		index = 0;
-		tableauDot[images.length-1].classList.remove("dot_selected")
+		tableauDot[3].classList.remove("dot_selected")
+	} else {
+		tableauDot[index -1].classList.remove("dot_selected")
 	}
 
-	baliseImage.src = "./assets/images/slideshow/" + images[index]
-	paraSlide.innerHTML = tagLine[index]
+	baliseImage.src = "./assets/images/slideshow/" + slides[index].image
+	paraSlide.innerHTML = slides[index].tagLine
 	tableauDot[index].classList.add("dot_selected")
-	tableauDot[index -1].classList.remove("dot_selected")
-
 	
-
-		
 
 })
 
